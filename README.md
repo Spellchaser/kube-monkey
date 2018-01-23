@@ -3,6 +3,17 @@ kube-monkey is an implementation of [Netflix's Chaos Monkey](https://github.com/
 
 ---
 
+## About this fork
+This fork contains the ability to delete statefulsets and deployments with simple extendability, an updated client-go version that's compatible with newer Kubernetes versions, whitelisting of namespaces, and a configurable kill %.
+
+To build this:
+```
+mkdir -p $GOPATH/src/github.com/asobti
+cd $GOPATH/src/github.com/asobti
+git clone https://github.com/Spellchaser/kube-monkey.git
+make container
+```
+---
 kube-monkey runs at a pre-configured hour (`run_hour`, defaults to 8am) on weekdays, and builds a schedule of deployments that will face a random
 Pod death sometime during the same day. The time-range during the day when the random pod Death might occur is configurable and defaults to 10am to 4pm.
 
@@ -102,7 +113,7 @@ At termination time, kube-monkey will:
 2. Check if the k8 app has updated kill-mode and kill-value
 3. Depending on kill-mode and kill-value, execute pods
 
-## Building
+## Building asobti's kube-monkey
 
 Clone the repository and build the container.
 
